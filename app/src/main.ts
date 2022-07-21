@@ -79,15 +79,6 @@ electron.ipcMain.on("app-data-store:get-value", (event, arg) => {
   event.returnValue = appDataStore[arg.key.toString()];
 });
 
-if (process.platform === "darwin") {
-  electron.ipcMain.on("unread-count:update-value", (event, arg) => {
-    const newBadgeCount = arg.value;
-    if (typeof newBadgeCount === "number") {
-      electron.app.badgeCount = newBadgeCount;
-    }
-  });
-}
-
 // Check for, download and prompt to install updates.
 // Downloaded updates are automatically applied on the next launch through Squirrel.
 function checkForUpdates(updater: Updater.Updater): void {
@@ -245,10 +236,6 @@ async function start(session: electron.Session): Promise<void> {
 
   await setMinimalAsDefault();
 
-  if (process.platform === "darwin" || process.platform === "linux") {
-    await setUnreadCountHandler();
-  }
-
   setupMenu(new I18n(electron.app.getLocale()));
 
   log.info("Finished setupMenu");
@@ -361,7 +348,9 @@ async function start(session: electron.Session): Promise<void> {
       return callback({
         responseHeaders: {
           ...details.responseHeaders,
+          /* eslint-disable */
           "Content-Security-Policy": [
+            /* eslint-enable */
             // Fetch directives
             "default-src 'self' 'unsafe-eval' 'unsafe-inline' data:",
           ].join("; "),
@@ -371,7 +360,9 @@ async function start(session: electron.Session): Promise<void> {
     return callback({
       responseHeaders: {
         ...details.responseHeaders,
+        /* eslint-disable */
         "Content-Security-Policy": [
+          /* eslint-enable */
           // Fetch directives
           "default-src 'self'",
           "child-src 'none'",
@@ -505,15 +496,6 @@ function handlePowerMonitor(powerMonitor: electron.PowerMonitor): void {
       window?.webContents.reload();
     }
   });
-}
-
-async function setUnreadCountHandler(): Promise<void> {
-  if (window !== undefined) {
-    await window.webContents.executeJavaScript(
-      "window.app.stateService.evtUnreadCountChange.attach((count) => {UnreadCount.updateValue(count)})",
-      false,
-    );
-  }
 }
 
 async function setMinimalAsDefault(): Promise<void> {
