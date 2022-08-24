@@ -227,7 +227,7 @@
     "asar": "^3.1.0",
     "chai": "^4.3.6",
     "electron": "^16.0.8",
-    "electron-packager": "^15.4.0",
+    "electron-packager": "^16.0.0",
     "electron-rebuild": "^3.2.7",
     "eslint": "^8.8.0",
     "jsdoc": "^3.6.10",
