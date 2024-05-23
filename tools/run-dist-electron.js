@@ -1,5 +1,6 @@
 const fs = require("fs");
 const {resolve} = require("path");
+const {execFileSync} = require("child_process");
 const packager = require("electron-packager");
 const {populateIgnoredPaths} = require("electron-packager/src/copy-filter");
 const debug = require("debug")("dist-electron");
@@ -54,14 +55,9 @@ function allow(directory, pattern) {
   };
 }
 
-async function package(config, os, flavour) {
+async function package(pkg, os, flavour) {
   const options = {};
   populateIgnoredPaths(options);
-
-  // Load package.json
-  const pkg = JSON.parse(
-    fs.readFileSync(resolve(__dirname, "..", "app", "package.json")),
-  );
 
   const osConfig = pkg.electron.buildConfigs[os][flavour];
 
@@ -74,7 +70,7 @@ async function package(config, os, flavour) {
   packageName = osConfig["name"];
   let executableName = osConfig["executableName"];
 
-  const version = new SemVer(config["version"]);
+  const version = new SemVer(pkg["version"]);
 
   const prereleaseChannel = version.prerelease;
   if (typeof prereleaseChannel[0] === "string" && prereleaseChannel[0] !== "") {
@@ -169,6 +165,17 @@ async function package(config, os, flavour) {
     }
   }
 
+  if (osConfig["platform"] === "win32") {
+    if (!(DEV_ENV === "development")) {
+      for (const outputPath of outputPaths) {
+        await windowsSign(
+          path.join(`${outputPath}`, `${executableName}.exe`),
+          flavour,
+        );
+      }
+    }
+  }
+
   console.info(`Packaged: ${outputPaths}`);
 }
 
@@ -203,6 +210,21 @@ async function macOSSign(outputPath, osConfig) {
   });
 }
 
+function windowsSign(exePath, flavour) {
+  console.log("Start signing EXE");
+  execFileSync(
+    "/usr/bin/env",
+    [
+      "bash",
+      path.join(__dirname, "./signing/sign-windows.sh"),
+      flavour,
+      exePath,
+    ],
+    {encoding: "utf-8", shell: false, stdio: [null, 1, 2]},
+  );
+  console.log("Signing EXE complete");
+}
+
 function preparePackage(os, flavour) {
   console.log(`Prepare package for ${os} ${flavour}`);
   // Load package.json
@@ -218,7 +240,6 @@ function preparePackage(os, flavour) {
     executableName += `-${common.getChannelName()}`;
   }
 
-  // TODO(jof): Please audit this. I rewrote the regex replacement with proper JSON parsing/writing. (The name mapping is a tad awkward.)
   const conf = JSON.parse(
     fs.readFileSync(resolve(__dirname, "..", "app", "package.json"), "utf8"),
   );
@@ -259,10 +280,9 @@ async function main() {
   }
   try {
     await package(pkg, os, flavour);
-    return 0;
   } catch (error) {
     console.log(`Could not create package because of an error: ${error}`);
-    return 1;
+    process.exit(1);
   }
 }
 

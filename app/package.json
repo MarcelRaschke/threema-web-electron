@@ -3,7 +3,7 @@
   "executableName": "Threema",
   "productName": "threema-consumer-web",
   "flavour": "consumer",
-  "version": "1.2.41",
+  "version": "1.2.43",
   "appAge": 1635177910086,
   "description": "Threema for desktop is a wrapped version of Threema Web. A multi-device solution will become available at a later date.",
   "main": "dist/src/main.js",
@@ -15,7 +15,7 @@
   "keywords": [],
   "author": "Threema GmbH",
   "license": "GNU AGPLv3",
-  "threemaWebVersion": "threema-web-2.5.3",
+  "threemaWebVersion": "threema-web-2.5.5",
   "updateServer": {
     "hostname": "releases.threema.ch",
     "path": "/web-electron/v1/updates"
@@ -41,7 +41,7 @@
         "/": "^(package.json)$",
         "/dist/": ".*",
         "/assets/icons/png": ".*",
-        "/dependencies/threema-web/release/threema-web-2.5.3/": ".*",
+        "/dependencies/threema-web/release/threema-web-2.5.5/": ".*",
         "/node_modules/electron-is-dev/": "^(index.js|package.json)$",
         "/node_modules/semver/": ".*",
         "/node_modules/electron-context-menu/": ".*",
@@ -114,18 +114,18 @@
           "zipName": "Threema-Work",
           "nodeModulesPath": "/Threema.app/Contents/Resources/app/node_modules"
         },
-        "red": {
+        "blue": {
           "description": "macOS Config",
-          "name": "Threema Red",
-          "executableName": "threema-red-web",
-          "bundleID": "ch.threema-red-web",
+          "name": "Threema Blue",
+          "executableName": "threema-blue-web",
+          "bundleID": "ch.threema-blue-web",
           "platform": "darwin",
           "arch": [
             "arm64",
             "x64"
           ],
-          "iconPath": "app/assets/icons/mac/red-icon.icns",
-          "zipName": "Threema-Red",
+          "iconPath": "app/assets/icons/mac/blue-icon.icns",
+          "zipName": "Threema-Blue",
           "nodeModulesPath": "/Threema.app/Contents/Resources/app/node_modules"
         }
       },
@@ -154,16 +154,16 @@
           "animation": "app/assets/animations/installer_animation_threema_work_@600px.gif",
           "nodeModulesPath": "/resources/app/node_modules"
         },
-        "red": {
+        "blue": {
           "description": "Windows Config",
-          "name": "Threema Red",
-          "executableName": "threema-red-web",
+          "name": "Threema Blue",
+          "executableName": "threema-blue-web",
           "platform": "win32",
           "arch": [
             "x64"
           ],
-          "iconPath": "app/assets/icons/win32/red.ico",
-          "animation": "app/assets/animations/installer_animation_threema_red_@600px.gif",
+          "iconPath": "app/assets/icons/win32/blue.ico",
+          "animation": "app/assets/animations/installer_animation_threema_blue_@600px.gif",
           "nodeModulesPath": "/resources/app/node_modules"
         }
       },
@@ -204,21 +204,21 @@
           },
           "nodeModulesPath": "/resources/app/node_modules"
         },
-        "red": {
+        "blue": {
           "description": "Linux DEB Config",
-          "name": "Threema Red",
-          "executableName": "threema-red-web",
+          "name": "Threema Blue",
+          "executableName": "threema-blue-web",
           "platform": "linux",
           "arch": [
             "x64"
           ],
           "icons": {
-            "48x48": "app/assets/icons/png/red-48x48.png",
-            "64x64": "app/assets/icons/png/red-64x64.png",
-            "128x128": "app/assets/icons/png/red-128x128.png",
-            "256x256": "app/assets/icons/png/red-256x256.png",
-            "512x512": "app/assets/icons/png/red-512x512.png",
-            "scalable": "app/assets/icons/svg/red.svg"
+            "48x48": "app/assets/icons/png/blue-48x48.png",
+            "64x64": "app/assets/icons/png/blue-64x64.png",
+            "128x128": "app/assets/icons/png/blue-128x128.png",
+            "256x256": "app/assets/icons/png/blue-256x256.png",
+            "512x512": "app/assets/icons/png/blue-512x512.png",
+            "scalable": "app/assets/icons/svg/blue.svg"
           },
           "nodeModulesPath": "/resources/app/node_modules"
         }
@@ -230,28 +230,28 @@
     "npm": "10.2.4"
   },
   "devDependencies": {
-    "@types/chai": "^4.3.12",
-    "@types/node": "^20.11.20",
+    "@types/chai": "^4.3.16",
+    "@types/node": "^20.12.12",
     "@types/semver": "^7.5.8",
-    "@typescript-eslint/eslint-plugin": "^7.0.2",
-    "@typescript-eslint/parser": "^7.0.2",
-    "@electron/asar": "^3.2.8",
+    "@typescript-eslint/eslint-plugin": "^7.9.0",
+    "@typescript-eslint/parser": "^7.9.0",
+    "@electron/asar": "^3.2.10",
     "@electron/rebuild": "^3.6.0",
     "chai": "^4.4.1",
-    "electron": "^v29.0.1",
+    "electron": "^v30.0.6",
     "electron-packager": "^17.1.2",
     "eslint": "^8.57.0",
-    "jsdoc": "^4.0.2",
+    "jsdoc": "^4.0.3",
     "nyc": "^15.1.0",
     "prettier": "^3.2.5",
     "ts-mocha": "^10.0.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "@threema/wasm-minisign-verify": "^0.1.3",
     "electron-context-menu": "^3.6.1",
-    "electron-log": "^5.1.1",
-    "semver": "^7.6.0"
+    "electron-log": "^5.1.4",
+    "semver": "^7.6.2"
   }
 }

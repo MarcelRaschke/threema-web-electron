@@ -39,7 +39,7 @@ To build Threema for desktop, follow the steps below.
 **Step 1: Build Threema Web**
 
     export DEV_ENV=development
-    export threema_web_version=threema-web-2.5.3
+    export threema_web_version=threema-web-2.5.5
     npm install
     ./tools/patches/patch-threema-web.sh
     npm run app:build:web
@@ -89,7 +89,7 @@ at <https://threema.ch/en/contact>.
 
 Threema for desktop is licensed under the GNU Affero General Public License v3.
 
-    Copyright (c) 2016-2023 Threema GmbH
+    Copyright (c) 2016-2024 Threema GmbH
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU Affero General Public License, version 3,

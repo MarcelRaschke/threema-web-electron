@@ -24,6 +24,15 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="1.2.43" date="2024-05-22">
+      <description>
+        <ul>
+          <li>Windows: In addition to the installer, the app binary is now also signed</li>
+          <li>Miscellaneous minor improvements and bug fixes</li>
+        </ul>
+      </description>
+      <url>https://threema.ch/en/whats-new#web_desktop_1243</url>
+    </release>
     <release version="1.2.41" date="2024-02-26">
       <description>
         <ul>
