@@ -80,7 +80,7 @@
     "generateDownloads:macos": "npm run generateUpdates downloads macOS consumer && npm run generateUpdates downloads macOS work && npm run generateUpdates downloads macOS blue",
     "generateDownloads:linux-deb": "npm run generateUpdates downloads linux-deb consumer && npm run generateUpdates downloads linux-deb work && npm run generateUpdates downloads linux-deb blue",
     "generateDownloads:linux-rpm": "npm run generateUpdates downloads linux-rpm consumer && npm run generateUpdates downloads linux-rpm work && npm run generateUpdates downloads linux-rpm blue",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package || echo \"Warning: patch-package failed. If we're not building for RPM, this warning can be ignored\" && exit 0"
   },
   "engines": {
     "node": "18.19.1",
@@ -117,7 +117,7 @@
   "optionalDependencies": {
     "electron-installer-debian": "^3.2.0",
     "electron-installer-dmg": "^4.0.0",
-    "electron-installer-redhat": "^3.4.0",
+    "electron-installer-redhat": "3.4.0",
     "electron-installer-windows": "^3.0.0",
     "macos-alias": "^0.2.11"
   }

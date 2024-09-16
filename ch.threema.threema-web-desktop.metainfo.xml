@@ -24,6 +24,16 @@
     </screenshot>
   </screenshots>
   <releases>
+    <release version="1.2.45" date="2024-09-13">
+      <description>
+        <ul>
+          <li>Windows: all binaries are now signed</li>
+          <li>Fixed a bug in relation to the update check</li>
+          <li>Miscellaneous minor improvements and bug fixes</li>
+        </ul>
+      </description>
+      <url>https://threema.ch/en/whats-new#web_desktop_1245</url>
+    </release>
     <release version="1.2.43" date="2024-05-22">
       <description>
         <ul>
@@ -57,7 +67,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_1239</url>
     </release>
-    <release version="1.2.38" date="2023-09-23"/>
+    <release version="1.2.38" date="2023-09-23">
       <description>
         <ul>
           <li>Miscellaneous minor improvements and bug fixes</li>
@@ -65,7 +75,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_1238</url>
     </release>
-    <release version="1.2.37" date="2023-09-20"/>
+    <release version="1.2.37" date="2023-09-20">
       <description>
         <ul>
           <li>Security update for Electron (fix for CVE-2023-4863)</li>
@@ -73,7 +83,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_1237</url>
     </release>
-    <release version="1.2.36" date="2023-08-31"/>
+    <release version="1.2.36" date="2023-08-31">
       <description>
         <ul>
           <li>Miscellaneous minor improvements and bug fixes</li>
@@ -81,7 +91,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_1236</url>
     </release>
-    <release version="1.2.35" date="2023-08-21"/>
+    <release version="1.2.35" date="2023-08-21">
       <description>
         <ul>
           <li>Miscellaneous minor improvements and bug fixes</li>
@@ -89,7 +99,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_1235</url>
     </release>
-    <release version="1.2.31" date="2023-06-01"/>
+    <release version="1.2.31" date="2023-06-01">
       <description>
         <ul>
           <li>Miscellaneous minor improvements and bug fixes</li>
@@ -97,7 +107,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_1231</url>
     </release>
-    <release version="1.2.29" date="2023-03-15"/>
+    <release version="1.2.29" date="2023-03-15">
       <description>
         <ul>
           <li>Miscellaneous minor improvements and bug fixes</li>
@@ -105,7 +115,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_1229</url>
     </release>
-    <release version="1.2.27" date="2022-12-14"/>
+    <release version="1.2.27" date="2022-12-14">
       <description>
         <ul>
           <li>Miscellaneous minor improvements and bug fixes</li>
@@ -113,7 +123,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_1227</url>
     </release>
-    <release version="1.2.25" date="2022-12-06"/>
+    <release version="1.2.25" date="2022-12-06">
       <description>
         <ul>
           <li>Miscellaneous minor improvements and bug fixes</li>
@@ -121,7 +131,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_1225</url>
     </release>
-    <release version="1.2.21" date="2022-09-14"/>
+    <release version="1.2.21" date="2022-09-14">
       <description>
         <ul>
           <li>Miscellaneous minor improvements and bug fixes</li>
@@ -129,7 +139,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_1221</url>
     </release>
-    <release version="1.2.18" date="2022-07-21"/>
+    <release version="1.2.18" date="2022-07-21">
       <description>
         <ul>
           <li>Miscellaneous minor improvements and bug fixes</li>
@@ -137,7 +147,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_1218</url>
     </release>
-    <release version="1.2.13" date="2022-06-07"/>
+    <release version="1.2.13" date="2022-06-07">
       <description>
         <ul>
           <li>Miscellaneous minor improvements and bug fixes</li>
@@ -145,7 +155,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_1213</url>
     </release>
-    <release version="1.2.7" date="2022-04-26"/>
+    <release version="1.2.7" date="2022-04-26">
       <description>
         <ul>
           <li>Miscellaneous minor improvements and bug fixes</li>
@@ -153,7 +163,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_127</url>
     </release>
-    <release version="1.2.5" date="2022-04-20"/>
+    <release version="1.2.5" date="2022-04-20">
       <description>
         <ul>
           <li>macOS: File attributes are set correctly on downloaded files</li>
@@ -162,7 +172,7 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_125</url>
     </release>
-    <release version="1.2.0" date="2022-04-04"/>
+    <release version="1.2.0" date="2022-04-04">
       <description>
         <ul>
           <li>macOS: Improved support for Apple processors</li>
@@ -173,8 +183,8 @@
       </description>
       <url>https://threema.ch/en/whats-new#web_desktop_120</url>
     </release>
-    <release version="1.1.0" date="2021-12-15"/>
-    <release version="1.0.3" date="2021-10-26"/>
+    <release version="1.1.0" date="2021-12-15" />
+    <release version="1.0.3" date="2021-10-26" />
   </releases>
   <launchable type="desktop-id">ch.threema.threema-web-desktop.desktop</launchable>
   <content_rating type="oars-1.1">

@@ -10,6 +10,7 @@ const {SemVer} = require("semver");
 const common = require("./packaging/common");
 const makeUniversalApp = require("@electron/universal");
 const OSXSign = require("@electron/osx-sign");
+const {signWindowsBinaryOrPackage} = require("./signing/sign-windows");
 
 const DEV_ENV = process.env.DEV_ENV;
 
@@ -168,7 +169,8 @@ async function package(pkg, os, flavour) {
   if (osConfig["platform"] === "win32") {
     if (!(DEV_ENV === "development")) {
       for (const outputPath of outputPaths) {
-        await windowsSign(
+        console.log(`Signing app binary for ${executableName}`);
+        signWindowsBinaryOrPackage(
           path.join(`${outputPath}`, `${executableName}.exe`),
           flavour,
         );
@@ -208,21 +210,6 @@ async function macOSSign(outputPath, osConfig) {
     "hardened-runtime": true,
     "signature-flags": "library",
   });
-}
-
-function windowsSign(exePath, flavour) {
-  console.log("Start signing EXE");
-  execFileSync(
-    "/usr/bin/env",
-    [
-      "bash",
-      path.join(__dirname, "./signing/sign-windows.sh"),
-      flavour,
-      exePath,
-    ],
-    {encoding: "utf-8", shell: false, stdio: [null, 1, 2]},
-  );
-  console.log("Signing EXE complete");
 }
 
 function preparePackage(os, flavour) {

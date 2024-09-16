@@ -1,14 +1,16 @@
-import * as https from "https";
-import * as fs from "fs";
-import * as fsPromises from "fs/promises";
-import * as path from "path";
-import * as crypto from "crypto";
+import * as https from "node:https";
+import * as fs from "node:fs";
+import * as fsPromises from "node:fs/promises";
+import * as path from "node:path";
 import type {UpdateMetadata} from "./UpdateMetadata";
 import {SemVer} from "semver";
 import * as log from "electron-log";
-import type {IncomingMessage} from "http";
-import * as tls from "tls";
+import type {IncomingMessage} from "node:http";
+import * as tls from "node:tls";
 import {getWeakRandomString} from "./random";
+import {base64ToU8a, u8aToBase64} from "../util/base64";
+import {byteEquals} from "../util/byte";
+import {spkiFingerprint} from "../util/cert";
 
 export class Downloader {
   public constructor(
@@ -119,26 +121,34 @@ export class Downloader {
     host: string,
     cert: tls.PeerCertificate,
   ): Error | undefined {
-    // Make sure the certificate is issued to the host we are connected to
+    // Make sure the certificate is issued to the host we are connected to.
     const err = tls.checkServerIdentity(host, cert);
     if (err) {
       return err;
     }
 
-    // Pin the public key, similar to HPKP pin-sha256 pinning
-    const pk = crypto
-      .createHash("sha256")
-      // @ts-expect-error: TODO https://github.com/DefinitelyTyped/DefinitelyTyped/discussions/55949tls
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-      .update(cert.pubkey)
-      .digest("base64")
-      .toString();
-    if (!this._certificateFingerprintSet.includes(pk)) {
-      const msg =
-        "Certificate verification error: " +
-        `The public key of '${cert.subject.CN}' ` +
-        "does not match our pinned fingerprint";
-      return new Error(msg);
+    // Known, valid fingerprints.
+    log.info(
+      `Accepted fingerprints: ${this._certificateFingerprintSet.join(", ")}`,
+    );
+    const validFingerprints = this._certificateFingerprintSet.map((fp) =>
+      base64ToU8a(fp),
+    );
+
+    // Calculate the SPKI fingerprint for this certificate.
+    const fingerprint = spkiFingerprint(cert.raw, "sha256");
+
+    log.info(
+      `Validating certificate fingerprint for '${host}' (CN: '${cert.subject.CN}'): ${u8aToBase64(fingerprint)}`,
+    );
+    if (
+      !validFingerprints.some((validFingerpint) =>
+        byteEquals(fingerprint, validFingerpint),
+      )
+    ) {
+      return new Error(
+        `Certificate verification error: The public key of '${cert.subject.CN}' does not match our pinned fingerprint`,
+      );
     }
 
     return undefined;
