@@ -1,4 +1,4 @@
-const createDMG = require("electron-installer-dmg");
+const createDMG = require("electron-installer-dmg").createDMG;
 const common = require("./common");
 
 function main() {
